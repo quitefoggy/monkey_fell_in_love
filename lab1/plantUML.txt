@@ -1,0 +1,51 @@
+@startuml
+map railway{
+    float => track_width
+    float => length
+    int => health_points
+    enum => status ("operatable", "needs repairs")
+    next_track =>
+}
+map station{
+    string => name
+    enum => type
+    int => amount of railways
+    connection =>
+}
+map train {
+    string => train_id
+    int => number_of_vagons
+    current_place =>
+    travels_to =>
+}
+map vagon{
+    string => vagon_id
+    enum => purpose ("passangers", "transportations")
+    int => health_points
+    float => track_width
+    float => max_weight
+    part_of =>
+}
+map "Об'єкт перевезення" as object_of_transport{
+    enum => type ("living being", "luggage")
+    bool => is_allowed
+    float => weight
+    float => dimensions (for ease of description only one parameter)
+    where =>
+}
+map tickets {
+    string => ticket_id
+    which_for =>
+    date => valid use date(s)
+    bool => is_valid
+}
+
+railway::next_track *-> railway : connects to next part
+station::connection *-> railway
+train::current_place *--> station : last checkpoint
+train::travels_to *--> station : destination
+vagon::part_of o--> train
+object_of_transport::where *--> vagon
+tickets::which_for *-> train
+
+@enduml
