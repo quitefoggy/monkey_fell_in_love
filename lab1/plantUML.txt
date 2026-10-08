@@ -44,13 +44,13 @@ map tickets {
     owner_id =>
 }
 
-railway::next_track *-> railway : connects to next part
-station::connection *-> railway
-train::current_place *--> station : last checkpoint
-train::travels_to *--> station : destination
-vagon::part_of o--> train
-object_of_transport::where *--> vagon
-tickets::which_for *-> train
-tickets::owner_id *--> object_of_transport
+railway::next_track *-> railway : one to one
+station::connection *-> railway : one (station) to many (railways)
+train::current_place *--> station : last checkpoint (one to one)
+train::travels_to *--> station : destination (one to one)
+vagon::part_of o--> train : many (vagons) to one (train)
+object_of_transport::where *--> vagon : many to one
+tickets::which_for *-> train : one to one
+tickets::owner_id *--> object_of_transport : one to one
 
 @enduml
