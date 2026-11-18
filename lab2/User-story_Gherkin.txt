@@ -1,0 +1,34 @@
+Scenario: Unknown user wants to purchase a ticket
+    Given user hasn't created account yet and they already chose the ticket they want
+    When user creates account
+    Then system proceeds to purchase with authentication details
+
+# A Scenario that will fail
+Scenario: Unknown user tries to purchase a ticket
+    Given user wants to buy a ticket, but has no intention to create an account
+    When user tries to book a ticket
+    Then system asks to log in, and if user rejects, system doesn't create any ticket
+
+Scenario: Known user wants to see their purchased tickets
+    Given user is already logged in and has purchses
+    When user clicks on specified menu
+    Then system returns a list of purchases with their statuses
+
+# Different case where user hasn't logged in yet
+Scenario: Known user wants to see their purchased tickets
+    Given user hasn't logged in, has purchases, but pressed on the specified menu
+    When user successfully logs into their account
+    Then system returns a list of purchases with their statuses
+
+Scenario: Known worker decides to post some news
+    Given worker is logged in
+    When worker filled in the text and presses a button to post
+    Then system records which user, when, and where the user posted some news
+
+# Same goes for the schedule update/expansion
+Scenario: Known worker updates/expands schedule
+    Given worker is logged in, and has correctly planned schedule
+    When worker filled in new schedule record and presses the post button
+    Then system updates schedule database and notifies redistribution sub-systems of change
+
+# We DO NOT take into account cases where worker hasn't logged in yet, as only logged-in users which are workers can get to that menu
