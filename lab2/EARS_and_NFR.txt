@@ -1,0 +1,25 @@
+# EARS
+
+User story: unknown user wants to purchase ticket
+
+WHEN user decides to book the ticket, the system SHALL forward user to login page, WHILE keeping the information about chosen ticket
+
+
+User story: authenticated user want to see their purchased tickets
+
+WHEN user clicks on specified menu, the system SHALL return list of purchased tickets, WHILE enternally logging who and to which portion got access to database
+
+
+User story: known worker decides to post some news
+
+WHEN worker filled in the news and presses post button, the system SHALL ask confirmation and IF worker accepts add the post to databse
+
+
+
+
+# NFR
+
+- термінал/фронтенд системи для кінцевого користувача має бути доступна як на комп'ютері так і на смартфоні
+- кінцевий фронтенд не може використовувати більше ніж 128мб оперативної пам'яті, для обох платформ
+- дані користувача не зберігаються у відкритому форматі, зберігаються лише хеши комбінації (умовної) електронної пошти та паролю
+- фронтенд має мати чітко висвітлений текст для систем читання з екрану
